@@ -1,51 +1,39 @@
-/*
-	Estruturas de Dados I - Turma: Ciência da Computação - Noturno 
-Número do Exercício: 2 - Vetor e Alocação
-Nome do Arquivo: Exercicio2AlocacaoDinamica.c
-Número do Grupo: 01
-	Autores:
-		Aluno: Danillo da Paz Cutrim				RGM/Matrícula: 27593886	
-		Aluno: João Gabriel Kreimer Torres			RGM/Matrícula: 28017188	
-		Aluno: Maikel Golberto Gontijo				RGM/Matrícula: 26837218   
-		Aluno: Robert Henrique Rodrigues Moreira	RGM/Matrícula: 26730421 
-*/
-
 #include<stdio.h>
 #include<stdlib.h>
 
 char* CarregarFrase(void);
 
 int main(void){
-//Declaração de variáveis
+//DeclaraÃ§Ã£o de variÃ¡veis
 	char *frase;
 	int i;
-//Início do Programa
+//InÃ­cio do Programa
 	printf("Exercicio 2\n\n");
-//Chamando a função CarregarFrase
+//Chamando a funÃ§Ã£o CarregarFrase
 	frase = CarregarFrase();
-//Exibindo a frase digitada pela função CarregarFrase
+//Exibindo a frase digitada pela funÃ§Ã£o CarregarFrase
 	printf("\nVoce digitou:\n");
-//Atribuindo o valor "-1" para a variável "i"
+//Atribuindo o valor "-1" para a variÃ¡vel "i"
 	i = -1;
-//Do/while para percorrer a variável frase e assim exibir a frase digitada
+//Do/while para percorrer a variÃ¡vel frase e assim exibir a frase digitada
 	do {
 		i++;
 		printf("%c", frase[i]);	
 	} while (frase[i] != '.');
-//Liberação do espaço da memória alocado
+//LiberaÃ§Ã£o do espaÃ§o da memÃ³ria alocado
 	free(frase);
 //Final do programa
 	return EXIT_SUCCESS;
 }
 
 char* CarregarFrase(void) {
-//Declaração de Variáveis
+//DeclaraÃ§Ã£o de VariÃ¡veis
 	int i, qtd;
 	char *frase, *fraseTemp;
-//Início da Função
-//Atribuindo o valor "10" para a variável "qtd" para usar como referência no tamanho da criação da memória dinâmica
+//InÃ­cio da FunÃ§Ã£o
+//Atribuindo o valor "10" para a variÃ¡vel "qtd" para usar como referÃªncia no tamanho da criaÃ§Ã£o da memÃ³ria dinÃ¢mica
 	qtd = 20;
-//Alocação de memória dinâmica
+//AlocaÃ§Ã£o de memÃ³ria dinÃ¢mica
 	frase = (char *) malloc (qtd * sizeof(char));
 	if (frase == NULL) {
 		printf("Memoria insuficiente");
@@ -55,11 +43,11 @@ char* CarregarFrase(void) {
 	printf("Digite uma frase (encerre com ponto final): \n");
 	
 	i = 0;
-//Do/while para atribuir um caractere digitado para a posição "i" da variável frase	
+//Do/while para atribuir um caractere digitado para a posiÃ§Ã£o "i" da variÃ¡vel frase	
 	do {
 		scanf("%c", &frase[i]);
 		i++;
-//Verifica se vai ser precisa aumentar o tamanho do espaço de memória alocado
+//Verifica se vai ser precisa aumentar o tamanho do espaÃ§o de memÃ³ria alocado
 		if (i == qtd) {
 			qtd = qtd + 10;
 			fraseTemp = (char *) realloc (frase, qtd * sizeof(char));
@@ -71,7 +59,7 @@ char* CarregarFrase(void) {
 			}
 		}
 	} while (frase[i - 1] != '.');
-//Verifica se foi usado todo o espaço de memória alocado, caso não tenha sido usado tudo, faz a liberação de memória do excedente
+//Verifica se foi usado todo o espaÃ§o de memÃ³ria alocado, caso nÃ£o tenha sido usado tudo, faz a liberaÃ§Ã£o de memÃ³ria do excedente
 	if (qtd > i) {
 		fraseTemp = (char *) realloc (frase, i * sizeof(char));
 		if (fraseTemp == NULL) {
@@ -80,6 +68,6 @@ char* CarregarFrase(void) {
 			frase = fraseTemp;
 		}		
 	} 
-//Final da função CarragarFrase
+//Final da funÃ§Ã£o CarragarFrase
 	return frase;
 }
